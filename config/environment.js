@@ -2,6 +2,9 @@
 
 module.exports = function(environment) {
   var ENV = {
+    contentSecurityPolicy: {
+         'connect-src' : "'self' https://calm-brook-9092.herokuapp.com"
+    },
     modulePrefix: 'recipe-frontend',
     environment: environment,
     baseURL: '/',

@@ -1,0 +1,7 @@
+<ul>
+{{#each model as |recipe|}}
+  <li>{{#link-to 'recipes.show' recipe}}{{recipe.title}}{{/link-to}}
+  </li>
+{{/each}}
+</ul>
+
