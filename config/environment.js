@@ -3,7 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     contentSecurityPolicy: {
-         'connect-src' : "'self' https://calm-brook-9092.herokuapp.com"
+         'connect-src' : "'self' https://calm-brook-9092.herokuapp.com http://localhost:3000"
     },
     modulePrefix: 'recipe-frontend',
     environment: environment,
@@ -15,7 +15,6 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       }
     },
-
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
@@ -45,6 +44,11 @@ module.exports = function(environment) {
   if (environment === 'production') {
 
   }
+
+  ENV['ember-simple-auth'] =  {
+      authenticationRoute: 'recipes'
+  }
+
 
   return ENV;
 };
