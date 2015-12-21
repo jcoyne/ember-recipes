@@ -5,4 +5,5 @@ export default DS.Model.extend({
   link: DS.attr('string'),
   thumbnail: DS.attr('string'),
   ingredients: DS.attr(),
+  preparation_steps: DS.attr(),
 });
