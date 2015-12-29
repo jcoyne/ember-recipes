@@ -3,7 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     contentSecurityPolicy: {
-         'connect-src' : "'self' https://calm-brook-9092.herokuapp.com http://localhost:3000"
+         'connect-src' : "'self' https://calm-brook-9092.herokuapp.com"
     },
     modulePrefix: 'recipe-frontend',
     environment: environment,
@@ -16,8 +16,8 @@ module.exports = function(environment) {
       }
     },
     APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
+      API_HOST: 'http://localhost:3000',
+      SERVER_TOKEN_ENDPOINT: 'http://localhost:3000/users/sign_in'
     }
   };
 
@@ -27,6 +27,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.contentSecurityPolicy['connect-src'] = "'self' http://localhost:3000";
   }
 
   if (environment === 'test') {
@@ -42,7 +43,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.APP.API_HOST = 'https://calm-brook-9092.herokuapp.com';
+    ENV.APP.SERVER_TOKEN_ENDPOINT = 'https://calm-brook-9092.herokuapp.com/users/sign_in';
   }
 
   ENV['ember-simple-auth'] =  {
