@@ -1,38 +1,41 @@
-/* jshint node: true */
+/* eslint-env node */
+'use strict';
 
 module.exports = function(environment) {
-  var ENV = {
-    contentSecurityPolicy: {
-         'connect-src' : "'self' https://calm-brook-9092.herokuapp.com"
-    },
+  let ENV = {
     modulePrefix: 'recipe-frontend',
-    environment: environment,
-    baseURL: '/',
-    locationType: 'hash',
+    environment,
+    rootURL: '/',
+    locationType: 'auto',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
+      },
+      EXTEND_PROTOTYPES: {
+        // Prevent Ember Data from overriding Date.parse.
+        Date: false
       }
     },
+
     APP: {
-      API_HOST: 'http://localhost:3000',
-      SERVER_TOKEN_ENDPOINT: 'http://localhost:3000/users/sign_in'
+      // Here you can pass flags/options to your application instance
+      // when it is created
     }
   };
 
   if (environment === 'development') {
+    ENV.APP.API_HOST = 'http://localhost:3000';
+    //ENV.contentSecurityPolicy['connect-src'] = "'self' http://localhost:3000";
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.contentSecurityPolicy['connect-src'] = "'self' http://localhost:3000";
   }
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter
@@ -44,13 +47,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.APP.API_HOST = 'https://calm-brook-9092.herokuapp.com';
-    ENV.APP.SERVER_TOKEN_ENDPOINT = 'https://calm-brook-9092.herokuapp.com/users/sign_in';
   }
-
-  ENV['ember-simple-auth'] =  {
-      authenticationRoute: 'recipes'
-  }
-
 
   return ENV;
 };
